@@ -1,0 +1,21 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    background-color: #404040;
+    color: #83F3DF;
+    font-family: 'Inconsolata', monospace;
+}
+
+header, footer {
+    font-size: 1.5em;
+    background-color: #404040;
+    color: #83F3DF;
+}
+
+.navbar-brand {
+    width: 10%;
+}
+
+.color-font {
+    color: #83F3DF;
+}
