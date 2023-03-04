@@ -1,0 +1,32 @@
+﻿@model projectportfolio.Models.Competence
+
+@{
+    ViewData["Title"] = "Radera kompetens";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>Är du säker på att du vill radera denna kompetens?</h2>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CompetenceId" />
+        <input type="submit" value="Radera" class="btn btn-danger fw-bold" />
+        <a class="btn btn-primary fw-bold" asp-action="Index">Tillbaka till lista</a>
+    </form>
+</div>

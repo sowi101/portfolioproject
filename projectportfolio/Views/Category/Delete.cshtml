@@ -1,0 +1,32 @@
+﻿@model projectportfolio.Models.Category
+
+@{
+    ViewData["Title"] = "Radera kategori";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>Är du säker på att du vill radera denna kategori?</h2>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.AreaOfUse)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.AreaOfUse)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CategoryId" />
+        <input type="submit" value="Radera" class="btn btn-danger fw-bold" />
+        <a class="btn btn-primary fw-bold" asp-action="Index">Tillbaka till lista</a>
+    </form>
+</div>

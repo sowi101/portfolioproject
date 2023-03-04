@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projectportfolio.Data;
 
@@ -10,9 +11,11 @@ using projectportfolio.Data;
 namespace projectportfolio.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230302141510_ThirdTest")]
+    partial class ThirdTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
@@ -235,11 +238,9 @@ namespace projectportfolio.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AreaOfUse")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("CategoryId");
@@ -257,7 +258,6 @@ namespace projectportfolio.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("CompetenceId");
@@ -277,22 +277,18 @@ namespace projectportfolio.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("End")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("Start")
-                        .IsRequired()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Start")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("What")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Where")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ExperienceId");
@@ -309,14 +305,12 @@ namespace projectportfolio.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AltText")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FileName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ImageId");
@@ -335,45 +329,25 @@ namespace projectportfolio.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("DetailId")
-                        .IsRequired()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("InitialDescription")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Link")
-                        .HasColumnType("TEXT");
-
                     b.Property<int?>("LogotypeId")
-                        .IsRequired()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("MainDescription")
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("MockupId")
                         .IsRequired()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("OptionalDescription")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Published")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TechnicalDescription")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("Published")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ProjectId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("DetailId");
 
                     b.HasIndex("LogotypeId");
 
@@ -489,19 +463,11 @@ namespace projectportfolio.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("projectportfolio.Models.Image", "DetailImg")
+                    b.HasOne("projectportfolio.Models.Image", "Logo")
                         .WithMany()
-                        .HasForeignKey("DetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LogotypeId");
 
-                    b.HasOne("projectportfolio.Models.Image", "LogoImg")
-                        .WithMany()
-                        .HasForeignKey("LogotypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("projectportfolio.Models.Image", "MockupImg")
+                    b.HasOne("projectportfolio.Models.Image", "Mockup")
                         .WithMany()
                         .HasForeignKey("MockupId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -509,11 +475,9 @@ namespace projectportfolio.Migrations
 
                     b.Navigation("Category");
 
-                    b.Navigation("DetailImg");
+                    b.Navigation("Logo");
 
-                    b.Navigation("LogoImg");
-
-                    b.Navigation("MockupImg");
+                    b.Navigation("Mockup");
                 });
 #pragma warning restore 612, 618
         }

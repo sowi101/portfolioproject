@@ -1,0 +1,53 @@
+﻿@model projectportfolio.Models.Experience
+
+@{
+    ViewData["Title"] = "Detaljer för " + Model.What + ", " + Model.Where;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.What)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.What)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Where)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Where)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Start)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Start)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.End)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.End)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary fw-bold" asp-action="Edit" asp-route-id="@Model?.ExperienceId">Ändra</a>
+    <a class="btn btn-primary fw-bold" asp-action="Index">Tillbaka till lista</a>
+</div>

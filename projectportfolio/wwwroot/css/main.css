@@ -12,10 +12,20 @@ header, footer {
     color: #83F3DF;
 }
 
+h1 {
+    font-size: 2.25em;
+    text-align: center;
+}
+
 .navbar-brand {
     width: 10%;
 }
 
-.color-font {
+.color-font, a {
     color: #83F3DF;
+}
+
+.btn-color {
+    background-color: #83F3DF;
+    color: #404040
 }
