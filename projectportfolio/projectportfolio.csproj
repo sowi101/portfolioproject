@@ -9,6 +9,9 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Component.razor" />
+    <Content Remove="Views\Home\Index1.cshtml" />
+    <Content Remove="Views\Home\Index2.cshtml" />
+    <Content Remove="Views\Home\Index3.cshtml" />
     <Content Remove="wwwroot\css\materialize.css" />
     <Content Remove="wwwroot\css\materialize.min.css" />
     <Content Remove="wwwroot\js\materialize.js" />
@@ -31,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

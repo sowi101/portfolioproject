@@ -48,7 +48,7 @@ namespace projectportfolio.Controllers
         // GET: Competence/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Kompetenser"), "CategoryId", "Name");
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace projectportfolio.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", competence.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Kompetenser"), "CategoryId", "Name", competence.CategoryId);
             return View(competence);
         }
 
@@ -118,7 +118,7 @@ namespace projectportfolio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "AreaOfUse", competence.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", competence.CategoryId);
             return View(competence);
         }
 

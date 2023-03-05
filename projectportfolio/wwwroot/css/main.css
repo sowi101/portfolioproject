@@ -7,13 +7,13 @@ body {
 }
 
 header, footer {
-    font-size: 1.5em;
+    font-size: 1.1em;
     background-color: #404040;
     color: #83F3DF;
 }
 
 h1 {
-    font-size: 2.25em;
+    font-size: 2em;
     text-align: center;
 }
 
@@ -28,4 +28,24 @@ h1 {
 .btn-color {
     background-color: #83F3DF;
     color: #404040
+}
+
+table thead, table tbody {
+    color: #83F3DF;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link:hover::before {
+    content: "< ";
+}
+
+.nav-link:hover::after {
+    content: " >";
+}
+.nav-item {
+    width: 12%;
+    text-align:center;
 }

@@ -9,19 +9,21 @@ namespace projectportfolio.Models
         // Properties
         public int ImageId { get; set; }
 
-        [Required]
-        public string? FileName { get; set; }
+        [Display(Name = "Filnamn")]
+        public string? Name { get; set; }
         
         [Required]
+        [Display(Name = "Beskrivning")]
         public string? AltText { get; set;}
 
         // Relation Category
         [Required]
+        [Display(Name = "Kategori")]
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
 
-        // Relation Project?
-        //public int ProjectId { get; set; }
-        //public Project? Project { get; set; }
+        [NotMapped]
+        [Display(Name = "Fil")]
+        public IFormFile? File { get; set; }
     }
 }

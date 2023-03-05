@@ -48,7 +48,7 @@ namespace projectportfolio.Controllers
         // GET: Experience/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Erfarenheter"), "CategoryId", "Name");
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace projectportfolio.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", experience.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Erfarenheter"), "CategoryId", "Name", experience.CategoryId);
             return View(experience);
         }
 
