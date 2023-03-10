@@ -1,0 +1,94 @@
+﻿@model projectportfolio.Models.Project
+
+@{
+    ViewData["Title"] = "Lägg till projekt";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div>
+    <div>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-12 col-md-3">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-3">
+                    <label asp-for="Published" class="control-label"></label>
+                    <input asp-for="Published" class="form-control" />
+                    <span asp-validation-for="Published" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-3">
+                    <label asp-for="Link" class="control-label"></label>
+                    <input asp-for="Link" class="form-control" />
+                    <span asp-validation-for="Link" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-3">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="InitialDescription" class="control-label"></label>
+                <textarea asp-for="InitialDescription" class="form-control"></textarea>
+                <span asp-validation-for="InitialDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TechnicalDescription" class="control-label"></label>
+                <textarea asp-for="TechnicalDescription" class="form-control"></textarea>
+                <span asp-validation-for="TechnicalDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OptionalDescription" class="control-label"></label>
+                <textarea asp-for="OptionalDescription" class="form-control"></textarea>
+                <span asp-validation-for="OptionalDescription" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="MockupId" class="control-label"></label>
+                    <select asp-for="MockupId" class ="form-control" asp-items="ViewBag.MockupId"></select>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="LogotypeId" class="control-label"></label>
+                    <select asp-for="LogotypeId" class ="form-control" asp-items="ViewBag.LogotypeId"></select>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="DetailId" class="control-label"></label>
+                    <select asp-for="DetailId" class ="form-control" asp-items="ViewBag.DetailId"></select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group ">
+
+                    @{ List<projectportfolio.ViewModels.CompInProject> competences = ViewBag.Competences;
+                    foreach (var competence in competences)
+                    {
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox"
+                               class="form-check-input"
+                               name="selectedCompetences"
+                               value="@competence.CompetenceId"
+                               @(Html.Raw(competence.IsChecked ? "checked=\"checked\"" : "")) />
+                            <label class="form-check-label">@competence.Name</label>
+                        </div>
+                    }
+                    }
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

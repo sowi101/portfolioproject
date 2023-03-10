@@ -12,17 +12,18 @@ namespace projectportfolio.Models
         [Display(Name = "Filnamn")]
         public string? Name { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Du måste fylla i en beskrivning av bilden.")]
         [Display(Name = "Beskrivning")]
         public string? AltText { get; set;}
 
         // Relation Category
-        [Required]
+        [Required(ErrorMessage = "Du måste välja en kategori.")]
         [Display(Name = "Kategori")]
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage = "Du måste välja en fil.")]
         [Display(Name = "Fil")]
         public IFormFile? File { get; set; }
     }

@@ -3,3 +3,16 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+
+@foreach (var item in ViewBag.Experiences)
+{
+    <h2>@item.What</h2>
+    <p>@item.Where</p>
+    <p>@item.Description</p>
+}
+
+@foreach (var item in ViewBag.Competences)
+{
+    <h2>@item.Name</h2>
+    <p>@item.Category.Name</p>
+}

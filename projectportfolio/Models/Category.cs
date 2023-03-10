@@ -7,11 +7,11 @@ namespace projectportfolio.Models
         // Properties
         public int CategoryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Du måste fylla i ett namn på kategorin.")]
         [Display(Name = "Namn")]
         public string? Name { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Du måste välja ett användningsområde.")]
         [Display(Name = "Användningsområde")]
         public string? AreaOfUse { get; set; }
     }

@@ -1,5 +1,13 @@
-﻿@{
+﻿@model projectportfolio.ViewModels.ProjectViewModel;
+
+@{
     ViewData["Title"] = "Projekt";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+@foreach (var item in Model.Projects) {
+    <h2>@item.Title</h2>
+    <p>@item.Published</p>
+    <p>@item.Link</p>
+}

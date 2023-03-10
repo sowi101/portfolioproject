@@ -7,17 +7,17 @@ namespace projectportfolio.Models
     {
         public int CompetenceId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Du måste välja ett namn på kompetense.")]
         [Display (Name = "Kompetens")]
         public string? Name { get; set; }
 
         // Relation Category
-        [Required]
+        [Required(ErrorMessage = "Du måste välja en kategori.")]
         [Display(Name = "Kategori")]
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
 
         // Relation Project
-        public List<Project>? Projects { get; set; }
+        public virtual ICollection<Project>? Projects { get; set; }
     }
 }
