@@ -1,12 +1,12 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Registrera ny användare";
+    ViewData["Title"] = "Ny användare";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center">@ViewData["Title"]</h1>
 
-    <div class="class=" col-12 col-md-6 mx-auto"">
+<div class="col-12 col-md-10 mx-auto">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
@@ -24,7 +24,9 @@
                 <label asp-for="Input.ConfirmPassword" class="text-dark">Konfirmera lösenord</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button id="registerSubmit" type="submit" class="btn btn btn-color">Registrera</button>
+            </div>
         </form>
     </div>
 

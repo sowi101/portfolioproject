@@ -22,32 +22,15 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Competence
+        [Route("/kompetenser")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Competences.Include(c => c.Category);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Competence/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Competences == null)
-            {
-                return NotFound();
-            }
-
-            var competence = await _context.Competences
-                .Include(c => c.Category)
-                .FirstOrDefaultAsync(m => m.CompetenceId == id);
-            if (competence == null)
-            {
-                return NotFound();
-            }
-
-            return View(competence);
-        }
-
         // GET: Competence/Create
+        [Route("/kompetenser/lagg-till")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Kompetenser"), "CategoryId", "Name");
@@ -59,6 +42,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/kompetenser/lagg-till")]
         public async Task<IActionResult> Create([Bind("CompetenceId,Name,CategoryId")] Competence competence)
         {
             if (ModelState.IsValid)
@@ -72,6 +56,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Competence/Edit/5
+        [Route("/kompetenser/andra/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Competences == null)
@@ -93,6 +78,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/kompetenser/andra/{id?}")]
         public async Task<IActionResult> Edit(int id, [Bind("CompetenceId,Name,CategoryId")] Competence competence)
         {
             if (id != competence.CompetenceId)
@@ -125,6 +111,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Competence/Delete/5
+        [Route("/kompetenser/radera/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Competences == null)
@@ -146,6 +133,7 @@ namespace projectportfolio.Controllers
         // POST: Competence/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("/kompetenser/radera/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Competences == null)

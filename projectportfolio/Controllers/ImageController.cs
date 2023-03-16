@@ -26,6 +26,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Image
+        [Route("/bilder")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Images.Include(i => i.Category);
@@ -33,6 +34,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Image/Details/5
+        [Route("/bilder/detaljer/{id?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Images == null)
@@ -52,6 +54,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Image/Create
+        [Route("/bilder/lagg-till")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Bilder"), "CategoryId", "Name");
@@ -63,6 +66,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/bilder/lagg-till")]
         public async Task<IActionResult> Create([Bind("ImageId,File,AltText,CategoryId")] Image image)
         {
             if (ModelState.IsValid)
@@ -93,6 +97,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Image/Edit/5
+        [Route("/bilder/andra/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Images == null)
@@ -114,6 +119,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/bilder/andra/{id?}")]
         public async Task<IActionResult> Edit(int id, [Bind("ImageId,Name,AltText,CategoryId")] Image image)
         {
             if (id != image.ImageId)
@@ -146,6 +152,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Image/Delete/5
+        [Route("/bilder/radera/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Images == null)
@@ -167,6 +174,7 @@ namespace projectportfolio.Controllers
         // POST: Image/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("/bilder/radera/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Images == null)

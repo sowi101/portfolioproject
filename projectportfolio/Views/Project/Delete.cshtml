@@ -6,7 +6,7 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<h3>Är du säker på att du vill radera detta projekt</h3>
+<p>Är du säker på att du vill radera detta projekt?</p>
 <div>
     <hr />
     <dl class="row">
@@ -28,66 +28,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Link)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InitialDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InitialDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TechnicalDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TechnicalDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OptionalDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OptionalDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MockupImg)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MockupImg.AltText)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LogoImg)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LogoImg.AltText)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailImg)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DetailImg.AltText)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.AreaOfUse)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Competences)
-        </dt>
-        <dd class="col-sm-10">
-            <ul>
-                @foreach (var compItem in Model.Competences)
-                {
-                    <li>
-                        @Html.DisplayFor(modelItem => compItem.Name)
-                    </li>
-                }
-            </ul>
-        </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ProjectId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="ProjectId" />
+            <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
+            <input  type="submit" value="RADERA" class="btn btn-danger" />
+        </form>
+    </div>
 </div>

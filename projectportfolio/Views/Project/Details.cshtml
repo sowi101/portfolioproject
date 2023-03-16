@@ -7,8 +7,8 @@
 <h1>@ViewData["Title"]</h1>
 
 <div>
-    <h4>Project</h4>
     <hr />
+    
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
@@ -29,43 +29,7 @@
             @Html.DisplayFor(model => model.Link)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InitialDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InitialDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TechnicalDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TechnicalDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OptionalDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OptionalDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MockupImg)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MockupImg.AltText)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LogoImg)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LogoImg.AltText)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DetailImg)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DetailImg.AltText)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayNameFor(model => model.CategoryId)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Category.Name)
@@ -83,9 +47,34 @@
                 }
             </ul>
         </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.InitialDescription)
+        </dt>
+        <dd class = "col-sm-12">
+            @Html.DisplayFor(model => model.InitialDescription)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.TechnicalDescription)
+        </dt>
+        <dd class = "col-sm-12">
+            @Html.DisplayFor(model => model.TechnicalDescription)
+        </dd>
     </dl>
+
+    <div class="row align-items-center">
+        <div class="col-12 col-md-4">
+            <img src="~/uploads/@Model.MockupImg.Name" alt="@Model.MockupImg.AltText" class="img-fluid" />
+        </div>
+        <div class="col-12 col-md-4 text-center">
+            <img src="~/uploads/@Model.LogoImg.Name" alt="@Model.LogoImg.AltText" class="img-fluid" />
+        </div>
+        <div class="col-12 col-md-4">
+            <img src="~/uploads/@Model.DetailImg.Name" alt="@Model.DetailImg.AltText" class="img-fluid" />
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ProjectId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<br />
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
+    <a class="btn btn-color fw-bold" asp-action="Edit" asp-route-id="@Model?.ProjectId">ÄNDRA</a>
 </div>

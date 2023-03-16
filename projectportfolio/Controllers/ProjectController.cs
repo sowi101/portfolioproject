@@ -23,6 +23,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project
+        [Route("/projekt")]
         public async Task<IActionResult> Index()
         {
             var viewModel = new ProjectViewModel();
@@ -37,6 +38,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project/Details/5
+        [Route("/projekt/detaljer/{id?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -61,14 +63,15 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project/Create
+        [Route("/projekt/lagg-till")]
         public IActionResult Create()
         {
             var project = new Project();
             project.Competences = new List<Competence>();
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");
-            ViewData["DetailId"] = new SelectList(_context.Images, "ImageId", "AltText");
-            ViewData["LogotypeId"] = new SelectList(_context.Images, "ImageId", "AltText");
-            ViewData["MockupId"] = new SelectList(_context.Images, "ImageId", "AltText");
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Projekt"), "CategoryId", "Name");
+            ViewData["DetailId"] = new SelectList(_context.Images.Where(image => image.Category.Name == "Detalj"), "ImageId", "AltText");
+            ViewData["LogotypeId"] = new SelectList(_context.Images.Where(image => image.Category.Name == "Logotyp"), "ImageId", "AltText");
+            ViewData["MockupId"] = new SelectList(_context.Images.Where(image => image.Category.Name == "Mockup"), "ImageId", "AltText");
             ShowCompInProject(project);
             return View();
         }
@@ -78,6 +81,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/projekt/lagg-till")]
         public async Task<IActionResult> Create([Bind("ProjectId,Title,Published,Link,InitialDescription,TechnicalDescription,OptionalDescription,MockupId,LogotypeId,DetailId,CategoryId")] Project project, string[] selectedCompetences)
         {
             if (selectedCompetences != null)
@@ -92,6 +96,17 @@ namespace projectportfolio.Controllers
 
             if (ModelState.IsValid)
             {
+                if (project.Published == null)
+                {
+                    project.Published = "Ej publicerad";
+                }
+
+
+                if (project.Link == null)
+                {
+                    project.Link = "Länk saknas";
+                }
+
                 _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -104,6 +119,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project/Edit/5
+        [Route("/projekt/andra/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -122,10 +138,10 @@ namespace projectportfolio.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", project.CategoryId);
-            ViewData["DetailId"] = new SelectList(_context.Images, "ImageId", "AltText", project.DetailId);
-            ViewData["LogotypeId"] = new SelectList(_context.Images, "ImageId", "AltText", project.LogotypeId);
-            ViewData["MockupId"] = new SelectList(_context.Images, "ImageId", "AltText", project.MockupId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Projekt"), "CategoryId", "Name", project.CategoryId);
+            ViewData["DetailId"] = new SelectList(_context.Images.Where(image => image.Category.Name == "Detalj"), "ImageId", "AltText", project.DetailId);
+            ViewData["LogotypeId"] = new SelectList(_context.Images.Where(image => image.Category.Name == "Logotyp"), "ImageId", "AltText", project.LogotypeId);
+            ViewData["MockupId"] = new SelectList(_context.Images.Where(image => image.Category.Name == "Mockup"), "ImageId", "AltText", project.MockupId);
 
             ShowCompInProject(project);
 
@@ -137,6 +153,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/projekt/andra/{id?}")]
         public async Task<IActionResult> Edit(int id, [Bind("ProjectId,Title,Published,Link,InitialDescription,TechnicalDescription,OptionalDescription,MockupId,LogotypeId,DetailId,CategoryId")] Project project, string[] selectedCompetences)
         {
             if (id != project.ProjectId)
@@ -218,6 +235,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project/Delete/5
+        [Route("/projekt/radera/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -243,6 +261,7 @@ namespace projectportfolio.Controllers
         // POST: Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("/projekt/radera/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Projects == null)

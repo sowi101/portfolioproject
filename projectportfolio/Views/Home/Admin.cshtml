@@ -2,11 +2,51 @@
     ViewData["Title"] = "Administration";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center">@ViewData["Title"]</h1>
 
-
-<a class="color-font" asp-area="" asp-controller="Category" asp-action="Index">Kategorier</a>
-<a class="color-font" asp-area="" asp-controller="Competence" asp-action="Index">Kompetens</a>
-<a class="color-font" asp-area="" asp-controller="Experience" asp-action="Index">Utbildningar och jobb</a>
-<a class="color-font" asp-area="" asp-controller="Image" asp-action="Index">Bilder</a>
-<a class="color-font" asp-area="" asp-controller="Project" asp-action="Index">Projekt</a>
+<div class="container mx-auto">
+    <div class="row g-5 my-5">
+        <a class="col-12 col-md-6" asp-area="" asp-controller="Project" asp-action="Index">
+            <div class="btn-color text-center py-3 rounded">
+                <i class="bi bi-collection-fill"></i>
+                <br />
+                Projekt
+            </div>
+        </a>
+        <a class="col-12 col-md-6" asp-area="" asp-controller="Experience" asp-action="Index">
+            <div class="btn-color text-center py-3 rounded">
+                <i class="bi bi-briefcase-fill"></i>
+                <br />
+                Utbildningar och jobb
+            </div>
+        </a>
+        <a class="col-12 col-md-6" asp-area="" asp-controller="Competence" asp-action="Index">
+            <div class="btn-color text-center py-3 rounded">
+                <i class="bi bi-file-earmark-text-fill"></i>
+                <br />
+                Kompetenser
+            </div>
+        </a>
+        <a class="col-12 col-md-6" asp-area="" asp-controller="Image" asp-action="Index">
+            <div class="btn-color text-center py-3 rounded">
+            <i class="bi bi-image-fill"></i>
+            <br />
+            Bilder
+            </div>
+        </a>
+        <a class="col-12 col-md-6" asp-area="" asp-controller="Category" asp-action="Index">
+            <div class="btn-color text-center py-3 rounded">
+                <i class="bi bi-filter-square-fill"></i>
+                <br />
+                Kategorier
+            </div>
+        </a>
+        <a class="col-12 col-md-6" asp-area="Identity" asp-page="/Account/Register">
+            <div class="btn-color text-center py-3 rounded">
+                <i class="bi bi-person-plus-fill"></i>
+                <br />
+                Ny användare
+            </div>
+        </a>
+    </div>
+</div>

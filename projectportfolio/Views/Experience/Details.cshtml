@@ -47,7 +47,8 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a class="btn btn-primary fw-bold" asp-action="Edit" asp-route-id="@Model?.ExperienceId">Ändra</a>
-    <a class="btn btn-primary fw-bold" asp-action="Index">Tillbaka till lista</a>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
+    <a class="btn btn-color fw-bold" asp-action="Edit" asp-route-id="@Model?.ExperienceId">ÄNDRA</a>
+    
 </div>

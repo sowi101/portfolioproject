@@ -4,6 +4,73 @@
     ViewData["Title"] = Model.Title;
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center">@ViewData["Title"]</h1>
 
-<p>@Model.InitialDescription</p>
+<p class="text-center">@Model.Published -
+
+    @if(Model.Link == "Länk saknas")
+    {
+        @Model.Link
+    } else
+    {
+        <a href=@Model.Link target="_blank">@Model.Link</a>
+    }
+</p>
+
+<section>
+    <img src="~/uploads/@Model.MockupImg.Name" alt="@Model.MockupImg.AltText" class="img-fluid" />
+</section>
+
+<div class="row my-5">
+    <section class="col-12 col-md-6 align-items-center text">
+        <h2>Beskrivning</h2>
+        <p>@Model.InitialDescription</p>
+
+    </section>
+    <section class="col-12 col-md-6 align-items-center text-center image">
+        <img src="~/uploads/@Model.LogoImg.Name" alt="@Model.LogoImg.AltText" class="img-fluid img-thumbnail" />
+    </section>
+</div>
+
+<div class="row my-5">
+    <section class="col-12 col-md-6 align-items-center image">
+        <img src="~/uploads/@Model.DetailImg.Name" alt="@Model.DetailImg.AltText" class="img-fluid img-thumbnail" />
+    </section>
+    <section class="col-12 col-md-6 text">
+        <h2>Teknisk beskrivning</h2>
+        <p>@Model.TechnicalDescription</p>
+    </section>
+
+</div>
+
+@if(Model.OptionalDescription != null)
+{
+    <div class="row my-5">
+    <section class="col-12 col-md-6 align-items-center image">
+        <h2>Ytterligare beskrivning</h2>
+        <p>@Model.OptionalDescription</p>
+    </section>
+    <section class="col-12 col-md-6 align-items-center image">
+        <h2>Teknik och verktyg</h2>
+        <ul>
+            @foreach (var compItem in Model.Competences)
+            {
+                <li>
+                    @compItem.Name
+                </li>
+            }
+        </ul>
+    </section>
+    </div>
+} else
+{
+    <section class="col-12 align-items-center">
+        <h2>Teknik och verktyg</h2>
+            @foreach (var compItem in Model.Competences)
+            {
+            <span class="badge btn-color">
+                    @compItem.Name
+                </span>
+            }
+    </section>
+}

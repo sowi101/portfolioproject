@@ -19,16 +19,19 @@ namespace projectportfolio.Controllers
             _context = context;
         }
 
+        
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Contact()
+        [Route("/om")]
+        public IActionResult About()
         {
             return View();
         }
 
+        [Route("/alla-projekt")]
         public async Task<IActionResult> Projects()
         {
             var viewModel = new ProjectViewModel();
@@ -42,6 +45,7 @@ namespace projectportfolio.Controllers
             return View(viewModel);
         }
 
+        [Route("/projekt/{id?}")]
         public async Task<IActionResult> Project(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -65,6 +69,7 @@ namespace projectportfolio.Controllers
             return View(project);
         }
 
+        [Route("/cv")]
         public IActionResult CV()
         {
             ViewBag.Experiences = _context.Experiences.Include(e => e.Category).ToList();
@@ -72,12 +77,14 @@ namespace projectportfolio.Controllers
             return View();
         }
 
-        public IActionResult About()
+        [Route("/kontakt")]
+        public IActionResult Contact()
         {
             return View();
         }
 
         [Authorize]
+        [Route("/administration")]
         public IActionResult Admin()
         {
             return View();

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<projectportfolio.Models.Experience>
 
 @{
-    ViewData["Title"] = "Utbildningar och jobb";
+    ViewData["Title"] = "Utbildning och jobb";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -18,9 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Where)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -32,9 +29,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Where)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ExperienceId">Ändra</a> |

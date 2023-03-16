@@ -15,12 +15,6 @@
             <th>
                 Titel
             </th>
-            <th>
-                Länk
-            </th>
-            <th>
-                Kategori
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,15 +25,9 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Link)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ProjectId">Ändra</a> |
+                <a asp-action="Details" asp-route-id="@item.ProjectId">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProjectId">Radera</a>
             </td>
         </tr>
 }

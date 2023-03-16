@@ -1,42 +1,40 @@
 ﻿@model projectportfolio.Models.Image
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Ändra bild " + Model.Name;
 }
 
-<h1>Edit</h1>
-
-<h4>Image</h4>
+<h1>@ViewData["Title"]</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ImageId" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" readonly />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" readonly />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="AltText" class="control-label"></label>
+                    <input asp-for="AltText" class="form-control" />
+                    <span asp-validation-for="AltText" class="text-danger"></span>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="AltText" class="control-label"></label>
-                <input asp-for="AltText" class="form-control" />
-                <span asp-validation-for="AltText" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <br />
+            <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
+                <input type="submit" value="SPARA ÄNDRINGAR" class="btn btn-color fw-bold" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

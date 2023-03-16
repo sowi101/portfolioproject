@@ -1,51 +1,164 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 body {
     background-color: #404040;
-    color: #83F3DF;
-    font-family: 'Inconsolata', monospace;
+    color: #DCEEEB;
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-weight: 300;
 }
 
+/* Layout elements */
 header, footer {
-    font-size: 1.1em;
     background-color: #404040;
     color: #83F3DF;
 }
 
-h1 {
-    font-size: 2em;
-    text-align: center;
+footer {
+    margin-top: auto;
 }
 
-.navbar-brand {
-    width: 10%;
+main {
+    flex-grow: 1;
 }
 
-.color-font, a {
+
+@media (max-width: 767px) {
+    header, footer {
+        font-size: 0.9em;
+    }
+
+    .text {
+        order: 1;
+    }
+
+    .image {
+        order: 2;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 1.25em;
+        text-transform: uppercase;
+    }
+
+    h3 {
+        font-size: 1.125em;
+    }
+}
+
+@media (min-width: 768px) {
+    header, footer {
+        font-size: 1.1em;
+    }
+
+    h1 {
+        font-size: 1.75em;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        text-transform: uppercase;
+    }
+
+    h3 {
+        font-size: 1.25em;
+    }
+}
+
+/* Text elements */
+
+h1, h2, h3, h4 {
     color: #83F3DF;
 }
 
-.btn-color {
-    background-color: #83F3DF;
-    color: #404040
+.navbar-brand {
+    width: 5%;
+    min-width: 50px;
 }
 
-table thead, table tbody {
+/* Button and link elements */
+
+.btn-color {
+    background-color: #83F3DF;
+    color: #404040;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid #83F3DF;
+}
+
+.btn-color:hover {
+    background-color: #60C6B4;
+    border: 1px solid #60C6B4;
+}
+
+.btn-color-secondary {
+    background-color: #404040;
+    color: #83F3DF;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid #83F3DF;
+}
+
+.btn-color-secondary:hover {
+    color: #60C6B4;
+    border: 1px solid #60C6B4;
+}
+
+a, footer i {
+    text-decoration: none;
+    color: #83F3DF;
+}
+
+a:hover, footer i:hover {
+    color: #DCEEEB;
+}
+
+.nav-link {
     color: #83F3DF;
 }
 
 .nav-link:hover {
-    color: #ffffff;
+    color: #DCEEEB;
 }
 
-.nav-link:hover::before {
-    content: "< ";
+.navbar-toggler {
+    border-color: #83F3DF;
 }
 
-.nav-link:hover::after {
-    content: " >";
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba131, 243, 223, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
-.nav-item {
-    width: 12%;
-    text-align:center;
+
+/* Table elements */
+
+table thead, table tbody, table a {
+    color: #DCEEEB;
+}
+
+i {
+    font-size: 2rem;
+}
+
+.card {
+    background-color: #404040;
+    padding: 0;
+    /*border: 1px solid #83F3DF;*/
+}
+
+.card p {
+    color: #DCEEEB;
+}
+
+.logobg {
+    background-color: #ffffff;
 }

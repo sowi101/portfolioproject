@@ -2,17 +2,88 @@
     ViewData["Title"] = "CV";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center">@ViewData["Title"]</h1>
 
-@foreach (var item in ViewBag.Experiences)
-{
-    <h2>@item.What</h2>
-    <p>@item.Where</p>
-    <p>@item.Description</p>
-}
+<div class="row my-5">
+    <section class="col-12 col-md-6 row align-items-center text">
+        <h2>UTBILDNING</h2>
+        @foreach (var item in ViewBag.Experiences)
+        {
+            if(item.Category.Name == "Utbildning"){
+            <h3>@item.What</h3>
+            <p>@item.Where</p>
+            <p>@item.Start - @item.End</p>            
+            <p>@item.Description</p>
+            }
+        }
+    </section>
+    <section class="col-12 col-md-6 align-items-center image">
+        <img src="~/images/undraw_studying_re_deca.svg" class="img-fluid" />
+    </section>
+</div>
 
-@foreach (var item in ViewBag.Competences)
-{
-    <h2>@item.Name</h2>
-    <p>@item.Category.Name</p>
-}
+<div class="row my-5">
+    <section class="col-12 col-md-6 row align-items-center image">
+        <img src="~/images/undraw_teacher_re_sico.svg" class="img-fluid"/>
+    </section>
+    <section class="col-12 col-md-6 text">
+        <h2>JOBBERFARENHET</h2>
+        @foreach (var item in ViewBag.Experiences)
+        {
+            if (item.Category.Name == "Jobb")
+            {
+                <h3>@item.What</h3>
+                <p>@item.Where</p>
+                <p>@item.Start - @item.End</p>
+                <p>@item.Description</p>
+            }
+        }
+    </section>
+
+</div>
+
+<div class="row my-5">
+    <h2>KOMPETENSER</h2>
+    <section class="col-12 col-md-4">
+        <h3>Språk</h3>
+
+        @foreach (var item in ViewBag.Competences)
+        {
+            if(item.Category.Name == "Programmeringsspråk")
+            {
+                <span class="badge btn-color">
+                    @item.Name
+                </span>
+            }
+        }
+  
+    </section>
+        <section class="col-12 col-md-4">
+        <h3>Ramverk</h3>
+        
+        @foreach (var item in ViewBag.Competences)
+        {
+            if (item.Category.Name == "Ramverk")
+            {
+                <span class="badge btn-color">
+                    @item.Name
+                </span>
+            }
+        }
+        
+    </section>
+    <section class="col-12 col-md-4">
+        <h3>Verktyg</h3>
+        
+        @foreach (var item in ViewBag.Competences)
+        {
+            if (item.Category.Name == "Verktyg")
+            {
+                <span class="badge btn-color">
+                    @item.Name
+                </span>
+            }
+        }
+    </section>
+</div>
+

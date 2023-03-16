@@ -6,7 +6,7 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<h2>Är du säker på att du vill radera denna kategori?</h2>
+<p>Är du säker på att du vill radera denna kategori?</p>
 <div>
     <hr />
     <dl class="row">
@@ -24,9 +24,11 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="CategoryId" />
-        <input type="submit" value="Radera" class="btn btn-danger fw-bold" />
-        <a class="btn btn-primary fw-bold" asp-action="Index">Tillbaka till lista</a>
-    </form>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CategoryId" />
+            <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
+            <input type="submit" value="RADERA" class="btn btn-danger fw-bold" />
+        </form>
+    </div>
 </div>

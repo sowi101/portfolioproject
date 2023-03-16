@@ -103,7 +103,7 @@ namespace projectportfolio.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/Home/Admin");
+            returnUrl ??= Url.Content("~/administration");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 

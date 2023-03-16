@@ -5,31 +5,27 @@
     ViewData["Title"] = "Inloggning för administration";
 }
 
-<h1>@ViewData["Title"]</h1>
-        <section class="col-12 col-md-6 mx-auto">
-            <form id="account" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label text-dark">E-postadress</label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label text-dark">Lösenord</label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="">
-                    <a class="btn btn-lg btn-primary" id="forgot-password" asp-page="./ForgotPassword">Glömt lösenord?</a>
-                    <button id="login-submit" type="submit" class="btn btn-lg btn-primary">Logga in</button>     
-                </div>
-                <div>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrera ny användare</a>
-                    </p>
-                </div>
-            </form>
-        </section>
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<section class="col-12 col-md-10 mx-auto">
+    <form id="account" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+            <label asp-for="Input.Email" class="form-label text-dark">E-postadress</label>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+            <label asp-for="Input.Password" class="form-label text-dark">Lösenord</label>
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-color-secondary fw-bold" id="forgot-password" asp-page="./ForgotPassword">GLÖMT LÖSENORD</a>
+            <button id="login-submit" type="submit" class="btn btn-color fw-bold">LOGGA IN</button>     
+        </div>
+    </form>
+</section>
         
 
 @section Scripts {

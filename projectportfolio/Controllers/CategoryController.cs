@@ -22,6 +22,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Category
+        [Route("/kategorier")]
         public async Task<IActionResult> Index()
         {
               return _context.Categories != null ? 
@@ -29,25 +30,8 @@ namespace projectportfolio.Controllers
                           Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
         }
 
-        // GET: Category/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Categories == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
-        }
-
         // GET: Category/Create
+        [Route("/kategorier/lagg-till")]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +42,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/kategorier/lagg-till")]
         public async Task<IActionResult> Create([Bind("CategoryId,Name,AreaOfUse")] Category category)
         {
             if (ModelState.IsValid)
@@ -70,6 +55,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Category/Edit/5
+        [Route("/kategorier/andra/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -90,6 +76,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/kategorier/andra/{id?}")]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,AreaOfUse")] Category category)
         {
             if (id != category.CategoryId)
@@ -121,6 +108,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Category/Delete/5
+        [Route("/kategorier/radera/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -141,6 +129,7 @@ namespace projectportfolio.Controllers
         // POST: Category/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("/kategorier/radera/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Categories == null)

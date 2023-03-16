@@ -20,7 +20,7 @@ namespace projectportfolio.Models
         public int? Start { get; set; }
 
         [Display(Name = "Slut")]
-        public string? End { get; set; } = "Pågående";
+        public string? End { get; set; }
         
         [Required(ErrorMessage = "Du måste fylla i en beskrivning av utbildningen/tjänsten.")]
         [Display(Name = "Beskrivning")]

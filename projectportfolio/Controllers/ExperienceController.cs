@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using projectportfolio.Data;
 using projectportfolio.Models;
 
@@ -22,6 +23,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Experience
+        [Route("/utbildning-och-jobb")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Experiences.Include(e => e.Category);
@@ -29,6 +31,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Experience/Details/5
+        [Route("/utbildning-och-jobb/detaljer/{id?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Experiences == null)
@@ -48,6 +51,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Experience/Create
+        [Route("/utbildning-och-jobb/lagg-till")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Erfarenheter"), "CategoryId", "Name");
@@ -59,10 +63,16 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/utbildning-och-jobb/lagg-till")]
         public async Task<IActionResult> Create([Bind("ExperienceId,What,Where,Start,End,Description,CategoryId")] Experience experience)
         {
             if (ModelState.IsValid)
             {
+                if (experience.End == null)
+                {
+                    experience.End = "Pågående";
+                }
+
                 _context.Add(experience);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -72,6 +82,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Experience/Edit/5
+        [Route("/utbildning-och-jobb/andra/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Experiences == null)
@@ -93,6 +104,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/utbildning-och-jobb/andra/{id?}")]
         public async Task<IActionResult> Edit(int id, [Bind("ExperienceId,What,Where,Start,End,Description,CategoryId")] Experience experience)
         {
             if (id != experience.ExperienceId)
@@ -125,6 +137,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Experience/Delete/5
+        [Route("/utbildning-och-jobb/radera/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Experiences == null)
@@ -146,6 +159,7 @@ namespace projectportfolio.Controllers
         // POST: Experience/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("/utbildning-och-jobb/radera/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Experiences == null)

@@ -4,10 +4,19 @@
     ViewData["Title"] = "Projekt";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-@foreach (var item in Model.Projects) {
-    <h2>@item.Title</h2>
-    <p>@item.Published</p>
-    <p>@item.Link</p>
-}
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="container">
+    <div class="row g-3">
+        @foreach (var item in Model.Projects) {
+            <a asp-action="Project" asp-route-id="@item.ProjectId" class="col-12 col-sm-6">
+                    <div class="card shadow-sm">
+                        <img src="/uploads/@item.DetailImg.Name" class="card-img-top logobg" alt="@item.DetailImg.AltText">
+                        <div class="card-body">
+                            <h2 class="card-title">@item.Title</h2>
+                            <p class="card-subtitle">@item.Category.Name</p>
+                        </div>
+                    </div>
+             </a>
+        }
+    </div>
+</div>
