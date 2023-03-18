@@ -1,14 +1,18 @@
 ﻿@model projectportfolio.ViewModels.ProjectViewModel;
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Projekt";
 }
 
 <h1>@ViewData["Title"]</h1>
 
+<!-- Link to page to add new project -->
 <p>
-    <a asp-action="Create">Lägg till nytt projekt</a>
+    <a class="fw-bold" asp-action="Create">LÄGG TILL NYTT PROJEKT</a>
 </p>
+
+<!-- Table for projects -->
 <table class="table">
     <thead>
         <tr>
@@ -19,17 +23,19 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Projects) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProjectId">Ändra</a> |
-                <a asp-action="Details" asp-route-id="@item.ProjectId">Detaljer</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProjectId">Radera</a>
-            </td>
-        </tr>
-}
+        <!-- Foreach loop to print some information about all projects -->
+        @foreach (var item in Model.Projects) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    <!-- Links to edit, view details and delete project -->
+                    <a asp-action="Edit" asp-route-id="@item.ProjectId">Ändra</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProjectId">Detaljer</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProjectId">Radera</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

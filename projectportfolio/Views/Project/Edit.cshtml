@@ -1,97 +1,99 @@
 ﻿@model projectportfolio.Models.Project
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Ändra projekt " + Model.Title;
 }
 
 <h1>@ViewData["Title"]</h1>
-
 <hr />
-<div>
-    <div>
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ProjectId" />
-            <div class="row">
-                <div class="form-group col-12 col-md-3">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-                <div class="form-group col-12 col-md-3">
-                    <label asp-for="Published" class="control-label"></label>
-                    <input asp-for="Published" class="form-control" />
-                    <span asp-validation-for="Published" class="text-danger"></span>
-                </div>
-                <div class="form-group col-12 col-md-3">
-                    <label asp-for="Link" class="control-label"></label>
-                    <input asp-for="Link" class="form-control" />
-                    <span asp-validation-for="Link" class="text-danger"></span>
-                </div>
-                <div class="form-group col-12 col-md-3">
-                    <label asp-for="CategoryId" class="control-label"></label>
-                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="InitialDescription" class="control-label"></label>
-                <textarea asp-for="InitialDescription" class="form-control"></textarea>
-                <span asp-validation-for="InitialDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TechnicalDescription" class="control-label"></label>
-                <textarea asp-for="TechnicalDescription" class="form-control"></textarea>
-                <span asp-validation-for="TechnicalDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionalDescription" class="control-label"></label>
-                <textarea asp-for="OptionalDescription" class="form-control"></textarea>
-                <span asp-validation-for="OptionalDescription" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <div class="form-group col-12 col-md-4">
-                    <label asp-for="MockupId" class="control-label"></label>
-                    <select asp-for="MockupId" class="form-control" asp-items="ViewBag.MockupId"></select>
-                    <span asp-validation-for="MockupId" class="text-danger"></span>
-                </div>
-                <div class="form-group col-12 col-md-4">
-                    <label asp-for="LogotypeId" class="control-label"></label>
-                    <select asp-for="LogotypeId" class="form-control" asp-items="ViewBag.LogotypeId"></select>
-                    <span asp-validation-for="LogotypeId" class="text-danger"></span>
-                </div>
-                <div class="form-group col-12 col-md-4">
-                    <label asp-for="DetailId" class="control-label"></label>
-                    <select asp-for="DetailId" class="form-control" asp-items="ViewBag.DetailId"></select>
-                    <span asp-validation-for="DetailId" class="text-danger"></span>
-                </div>
-            </div>
-            <br />
-            <div class="form-group ">
 
-                @{
-                    List<projectportfolio.ViewModels.CompInProject> competences = ViewBag.Competences;
-                    foreach (var competence in competences)
-                    {
-                        <div class="form-check form-check-inline">
-                            <input type="checkbox"
-                               class="form-check-input"
-                               name="selectedCompetences"
-                               value="@competence.CompetenceId"
-                               @(Html.Raw(competence.IsChecked ? "checked=\"checked\"" : "")) />
-                            <label class="form-check-label">@competence.Name</label>
-                        </div>
-                    }
-                }
-            </div>
-            <br />
-            <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-                <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
-                <input type="submit" value="SPARA ÄNDRINGAR" class="btn btn-color fw-bold" />
-            </div>
-        </form>
+<!-- Form to edit project -->
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ProjectId" />
+    <div class="row">
+        <div class="form-group col-12 col-md-3">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-3">
+            <label asp-for="Published" class="control-label"></label>
+            <input asp-for="Published" class="form-control" />
+            <span asp-validation-for="Published" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-3">
+            <label asp-for="Link" class="control-label"></label>
+            <input asp-for="Link" class="form-control" />
+            <span asp-validation-for="Link" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-3">
+            <label asp-for="CategoryId" class="control-label"></label>
+            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
     </div>
-</div>
+    <div class="form-group">
+        <label asp-for="InitialDescription" class="control-label"></label>
+        <textarea asp-for="InitialDescription" class="form-control"></textarea>
+        <span asp-validation-for="InitialDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TechnicalDescription" class="control-label"></label>
+        <textarea asp-for="TechnicalDescription" class="form-control"></textarea>
+        <span asp-validation-for="TechnicalDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OptionalDescription" class="control-label"></label>
+        <textarea asp-for="OptionalDescription" class="form-control"></textarea>
+        <span asp-validation-for="OptionalDescription" class="text-danger"></span>
+    </div>
+    <div class="row">
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="MockupId" class="control-label"></label>
+            <select asp-for="MockupId" class="form-control" asp-items="ViewBag.MockupId"></select>
+            <span asp-validation-for="MockupId" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="LogotypeId" class="control-label"></label>
+            <select asp-for="LogotypeId" class="form-control" asp-items="ViewBag.LogotypeId"></select>
+            <span asp-validation-for="LogotypeId" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="DetailId" class="control-label"></label>
+            <select asp-for="DetailId" class="form-control" asp-items="ViewBag.DetailId"></select>
+            <span asp-validation-for="DetailId" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="form-group ">
+    @{
+        // Save data from ViewBag to a list based on a viewmodel
+        List<projectportfolio.ViewModels.CompInProject> competences = ViewBag.Competences;
+
+        // Foreach loop to print all competences with a checkbox and add attribute "checked" if property IsChecked in viewmodel is set to true.
+        foreach (var competence in competences)
+        {
+            <div class="form-check form-check-inline">
+                <input type="checkbox"
+                    id="competence-@competence.CompetenceId"
+                    class="form-check-input"
+                    name="selectedCompetences"
+                    value="@competence.CompetenceId"
+                    @(Html.Raw(competence.IsChecked ? "checked=\"checked\"" : "")) />
+                    <label for="competence-@competence.CompetenceId" class="form-check-label">@competence.Name</label>
+            </div>
+        }
+    }
+    </div>
+    <br />
+    <!-- Buttons with link and to submit form -->
+    <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
+        <input type="submit" value="SPARA ÄNDRINGAR" class="btn btn-color fw-bold" />
+    </div>
+</form>
 
 <div>
     

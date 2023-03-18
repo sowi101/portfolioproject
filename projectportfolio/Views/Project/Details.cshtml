@@ -1,6 +1,7 @@
 ﻿@model projectportfolio.Models.Project
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Detaljer för " + Model.Title;
 }
 
@@ -8,7 +9,7 @@
 
 <div>
     <hr />
-    
+    <!-- Description list with information about project -->
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
@@ -34,39 +35,52 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Competences)
-        </dt>
-        <dd class="col-sm-10">
-            <ul>
-                @foreach (var compItem in Model.Competences)
-                {
-                    <li>
-                        @Html.DisplayFor(modelItem => compItem.Name)
-                    </li>
-                }
-            </ul>
-        </dd>
-        <dt class = "col-sm-3">
+        @if(Model.Competences.Count != 0) { 
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Competences)
+            </dt>
+            <dd class="col-sm-10">
+                <ul>
+                    <!-- Foreach loop to print all competences used in project -->
+                    @foreach (var compItem in Model.Competences)
+                    {
+                        <li>
+                            @Html.DisplayFor(modelItem => compItem.Name)
+                        </li>
+                    }
+                </ul>
+            </dd>
+        }
+        <dt class = "col-sm-6">
             @Html.DisplayNameFor(model => model.InitialDescription)
         </dt>
         <dd class = "col-sm-12">
             @Html.DisplayFor(model => model.InitialDescription)
         </dd>
-        <dt class = "col-sm-3">
+        <dt class = "col-sm-6">
             @Html.DisplayNameFor(model => model.TechnicalDescription)
         </dt>
         <dd class = "col-sm-12">
             @Html.DisplayFor(model => model.TechnicalDescription)
         </dd>
+        @if (Model.OptionalDescription != null)
+        {
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.OptionalDescription)
+            </dt>
+            <dd class="col-sm-12">
+                @Html.DisplayFor(model => model.OptionalDescription)
+            </dd>
+        }
     </dl>
 
+    <!-- Images -->
     <div class="row align-items-center">
         <div class="col-12 col-md-4">
             <img src="~/uploads/@Model.MockupImg.Name" alt="@Model.MockupImg.AltText" class="img-fluid" />
         </div>
         <div class="col-12 col-md-4 text-center">
-            <img src="~/uploads/@Model.LogoImg.Name" alt="@Model.LogoImg.AltText" class="img-fluid" />
+            <img src="~/uploads/@Model.LogoImg.Name" alt="@Model.LogoImg.AltText" class="img-fluid img-thumbnail" />
         </div>
         <div class="col-12 col-md-4">
             <img src="~/uploads/@Model.DetailImg.Name" alt="@Model.DetailImg.AltText" class="img-fluid" />
@@ -74,6 +88,8 @@
     </div>
 </div>
 <br />
+
+<!-- Buttons with links to index and edit page -->
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
     <a class="btn btn-color fw-bold" asp-action="Edit" asp-route-id="@Model?.ProjectId">ÄNDRA</a>

@@ -54,6 +54,7 @@ namespace projectportfolio.Controllers
         [Route("/utbildning-och-jobb/lagg-till")]
         public IActionResult Create()
         {
+            // Save categories with a certain area of use to select list
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Erfarenheter"), "CategoryId", "Name");
             return View();
         }
@@ -95,6 +96,8 @@ namespace projectportfolio.Controllers
             {
                 return NotFound();
             }
+
+            // Save categories with a certain area of use to select list
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Erfarenheter"), "CategoryId", "Name", experience.CategoryId);
             return View(experience);
         }

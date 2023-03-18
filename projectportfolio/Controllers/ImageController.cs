@@ -15,13 +15,18 @@ namespace projectportfolio.Controllers
     public class ImageController : Controller
     {
         private readonly ApplicationDbContext _context;
+        // Property for data about host environment
         private readonly IWebHostEnvironment _hostEnvironment;
+        // Property for path to root directory
         private string? rootpath;
 
+        // Interface with data about host environment added as argument in constructor
         public ImageController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            // Save data about host environment to variable.
             _hostEnvironment = hostEnvironment;
+            // Save information about root path to variable.
             rootpath = _hostEnvironment.WebRootPath;
         }
 
@@ -57,6 +62,7 @@ namespace projectportfolio.Controllers
         [Route("/bilder/lagg-till")]
         public IActionResult Create()
         {
+            // Save categories with a certain area of use to select list
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Bilder"), "CategoryId", "Name");
             return View();
         }
@@ -71,12 +77,17 @@ namespace projectportfolio.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (image.File != null) { 
+                // If statement that check that File property isn't null
+                if (image.File != null) {
+                    // Save name of image file to variable
                     string name = Path.GetFileName(image.File.FileName);
+                    // Save a path to image file to variable
                     string path = Path.Combine(rootpath + "/uploads/", name);
 
+                    // Set name of file as value to property name in model
                     image.Name = name;
 
+                    // Upload of image file
                     using (var fileStream = new FileStream(path, FileMode.Create))
                     {
                         await image.File.CopyToAsync(fileStream);
@@ -84,15 +95,20 @@ namespace projectportfolio.Controllers
                 } 
                 else
                 {
+                    // Set value of property name as null
                     image.Name = null;
                 }
 
-
+                // Add image information to database
                 _context.Add(image);
                 await _context.SaveChangesAsync();
+
+                // Redirection to Index view
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "AreaOfUse", image.CategoryId);
+            
+            // Return informatio about image to view
             return View(image);
         }
 

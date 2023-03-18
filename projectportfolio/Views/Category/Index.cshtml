@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<projectportfolio.Models.Category>
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Kategorier";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<p>
-    <a asp-action="Create">Lägg till ny kategori</a>
+<!-- Link to page to add new category -->
+<p>    
+    <a class="fw-bold" asp-action="Create">LÄGG TILL NY KATEGORI</a>
 </p>
+
+<!-- Table for categories -->
 <table class="table">
     <thead>
         <tr>
@@ -22,19 +26,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AreaOfUse)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoryId">Ändra</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategoryId">Radera</a>
-            </td>
-        </tr>
-}
+        <!-- Foreach loop to print all categories -->
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AreaOfUse)
+                </td>
+                <td>
+                    <!-- Links to edit and delete category -->
+                    <a asp-action="Edit" asp-route-id="@item.CategoryId">Ändra</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CategoryId">Radera</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

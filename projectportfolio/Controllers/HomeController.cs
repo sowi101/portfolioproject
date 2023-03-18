@@ -11,14 +11,18 @@ namespace projectportfolio.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
+        // Database connection property
         private readonly ApplicationDbContext? _context;
 
+        // Database connection added as argument in constructor
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+
+            // Save database connection to variable.
             _context = context;
         }
-
         
         public IActionResult Index()
         {
@@ -34,6 +38,7 @@ namespace projectportfolio.Controllers
         [Route("/alla-projekt")]
         public async Task<IActionResult> Projects()
         {
+            // Get all projects and related information from database and save to a variable as a viewmodel
             var viewModel = new ProjectViewModel();
             viewModel.Projects = _context.Projects
                 .Include(p => p.Category)
@@ -42,17 +47,20 @@ namespace projectportfolio.Controllers
                 .Include(p => p.MockupImg)
                 .Include(p => p.Competences);
 
+            // Return all projects to view
             return View(viewModel);
         }
 
         [Route("/projekt/{id?}")]
         public async Task<IActionResult> Project(int? id)
         {
+            // If statement that return response status Not Found if no id has been given or no project is stored in database 
             if (id == null || _context.Projects == null)
             {
                 return NotFound();
             }
 
+            // Get project and related information from database and save to variable
             var project = await _context.Projects
                 .Include(p => p.Category)
                 .Include(p => p.DetailImg)
@@ -61,17 +69,20 @@ namespace projectportfolio.Controllers
                 .Include(p => p.Competences)
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
 
+            // If statement that return response status Not Found if no project with given id is stored in database 
             if (project == null)
             {
                 return NotFound();
             }
 
+            // Return project to view
             return View(project);
         }
 
         [Route("/cv")]
         public IActionResult CV()
         {
+            // Get all experiences and competences from database and save to ViewBags.
             ViewBag.Experiences = _context.Experiences.Include(e => e.Category).ToList();
             ViewBag.Competences = _context.Competences.Include(c => c.Category).ToList();
             return View();

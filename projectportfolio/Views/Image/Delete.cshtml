@@ -1,6 +1,7 @@
 ﻿@model projectportfolio.Models.Image
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Radera bild " + Model.Name;
 }
 
@@ -9,6 +10,7 @@
 <p>Är du säker på att du vill radera information om bilden?</p>
 <div>
     <hr />
+    <!-- Description list with information about image -->
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
@@ -30,6 +32,7 @@
         </dd>
     </dl>
     
+    <!-- Buttons with link and to submit for delete -->
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <form asp-action="Delete">
             <input type="hidden" asp-for="ImageId" />

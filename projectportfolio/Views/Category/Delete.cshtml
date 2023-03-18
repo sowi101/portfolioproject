@@ -1,6 +1,6 @@
 ﻿@model projectportfolio.Models.Category
-
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Radera kategori";
 }
 
@@ -9,6 +9,7 @@
 <p>Är du säker på att du vill radera denna kategori?</p>
 <div>
     <hr />
+    <!-- Description list with information about category -->
     <dl class="row">
         <dt class = "col-sm-4">
             @Html.DisplayNameFor(model => model.Name)
@@ -24,6 +25,7 @@
         </dd>
     </dl>
     
+    <!-- Buttons with link and to submit for delete -->
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <form asp-action="Delete">
             <input type="hidden" asp-for="CategoryId" />

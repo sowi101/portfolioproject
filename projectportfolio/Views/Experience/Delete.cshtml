@@ -1,6 +1,7 @@
 ﻿@model projectportfolio.Models.Experience
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Radera utbildning/jobb";
 }
 
@@ -9,6 +10,7 @@
 <p>Är du säker på att du vill radera denna utbildning / detta jobb?</p>
 <div>
     <hr />
+    <!-- Description list with information about experience -->
     <dl class="row">
         <dt class = "col-sm-3">
             @Html.DisplayNameFor(model => model.What)
@@ -47,6 +49,8 @@
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
     </dl>
+
+    <!-- Buttons with link and to submit for delete -->
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <form asp-action="Delete">
             <input type="hidden" asp-for="ExperienceId" />

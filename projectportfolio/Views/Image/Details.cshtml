@@ -1,12 +1,14 @@
 ﻿@model projectportfolio.Models.Image
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Detaljer för bilden " + Model.Name;
 }
 
 <h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-12 col-md-4">
+        <!-- Description list with information about image -->
         <dl class="row">
             <dt class = "col-sm-5">
                 @Html.DisplayNameFor(model => model.Name)
@@ -30,10 +32,15 @@
         </dl>
     </div>
 
+    <!-- Image -->
     <div class="col-12 col-md-8">
         <img class="img-fluid" src="~/uploads/@Html.DisplayFor(model => model.Name)" />
     </div>
 </div>
+
+<br />
+
+<!-- Buttons with links to index and edit page -->
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
     <a class="btn btn-color fw-bold" asp-action="Edit" asp-route-id="@Model?.ImageId">ÄNDRA</a>

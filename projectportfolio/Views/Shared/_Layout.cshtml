@@ -11,21 +11,26 @@
     <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
 </head>
 <body>
+    <!-- Header with logotype and nagivation -->
     <header class="shadow-sm ">
         <nav class="navbar navbar-expand-sm navbar-toggleable-md container">
             <div class="container-fluid">
+                <!-- Logotype -->
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/images/logotype.svg" alt="Logotype för Sofia Widholm" class="img-fluid" />
                 </a>
                 
+                <!-- Toggle button for mobile menu -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <!-- Navigation links -->
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link color-font fw-bold" asp-area="" asp-controller="Home" asp-action="About">OM</a>
+                            <a class="nav-link color-font fw-bold" asp-area="" asp-controller="Home" asp-action="About">OM SOFIA</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link color-font fw-bold" asp-area="" asp-controller="Home" asp-action="Projects">PROJEKT</a>
@@ -37,30 +42,35 @@
                             <a class="nav-link color-font fw-bold" asp-area="" asp-controller="Home" asp-action="Contact">KONTAKT</a>
                         </li>
                     </ul>
+                    <!-- Partial shown when logged in -->
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- Main content -->
     <div class="container">
         <main role="main" class="py-4 col-12 col-lg-8 mx-auto">
             @RenderBody()
         </main>
     </div>
 
+    <!-- Footer with links to login page, LinkedIn and Github -->
     <footer class="py-5 px-5 text-center container">
         <div class="d-sm-flex justify-content-between align-content-center mx-auto">
-            <a class="" asp-area="Identity" asp-page="/Account/Login" class="m-3">Inloggning för administration</a>
+            <a class="fw-bold m-3" asp-area="Identity" asp-page="/Account/Login">INLOGGNING FÖR ADMINISTRATION</a>
             <div>
-                <a href="https://www.linkedin.com/in/sofiawidholm/" target"_blank" class="m-3">
+                <a href="https://www.linkedin.com/in/sofiawidholm/" target"_blank" class="m-3" title="Link to LinkedIn profile">
                     <i class="bi bi-linkedin"></i>
                 </a>
-                <a href="https://github.com/sowi101" target"_blank" class="m-3">
+                <a href="https://github.com/sowi101" target"_blank" class="m-3" title="Link to GitHub profile">
                     <i class="bi bi-github"></i>
                 </a>
             </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

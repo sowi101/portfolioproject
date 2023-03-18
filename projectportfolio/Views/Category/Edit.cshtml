@@ -1,38 +1,37 @@
 ﻿@model projectportfolio.Models.Category
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Ändra kategori " + Model.Name;
 }
 
 <h1>@ViewData["Title"]</h1>
-
 <hr />
-<div class="">
-    <div class="">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<!-- Form to edit category -->
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
-            <input type="hidden" asp-for="CategoryId" />
-            <div class="row">
-                <div class="form-group col-12 col-md-6">
-                    <label asp-for="Name" class="control-label fw-bold"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    <label asp-for="AreaOfUse" class="control-label fw-bold"></label>
-                    <input asp-for="AreaOfUse" class="form-control" />
-                    <span asp-validation-for="AreaOfUse" class="text-danger"></span>
-                </div>
-            </div>
-            <br />
-            <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-                <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
-                <input type="submit" value="SPARA ÄNDRINGAR" class="btn btn-color fw-bold" />     
-            </div>
-        </form>
+    <input type="hidden" asp-for="CategoryId" />
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label asp-for="Name" class="control-label fw-bold"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label asp-for="AreaOfUse" class="control-label fw-bold"></label>
+            <input asp-for="AreaOfUse" class="form-control" />
+            <span asp-validation-for="AreaOfUse" class="text-danger"></span>
+        </div>
     </div>
-</div>
+    <br />
+    <!-- Buttons with link and to submit form -->
+    <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
+        <input type="submit" value="SPARA ÄNDRINGAR" class="btn btn-color fw-bold" />     
+    </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

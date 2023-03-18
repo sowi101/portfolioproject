@@ -1,9 +1,11 @@
 ﻿@{
+    // Save title to ViewData
     ViewData["Title"] = "Administration";
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 
+<!-- Grid with link to index pages and to register new account -->
 <div class="container mx-auto">
     <div class="row g-5 my-5">
         <a class="col-12 col-md-6" asp-area="" asp-controller="Project" asp-action="Index">
@@ -29,9 +31,9 @@
         </a>
         <a class="col-12 col-md-6" asp-area="" asp-controller="Image" asp-action="Index">
             <div class="btn-color text-center py-3 rounded">
-            <i class="bi bi-image-fill"></i>
-            <br />
-            Bilder
+                <i class="bi bi-image-fill"></i>
+                <br />
+                Bilder
             </div>
         </a>
         <a class="col-12 col-md-6" asp-area="" asp-controller="Category" asp-action="Index">

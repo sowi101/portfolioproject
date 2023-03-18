@@ -1,6 +1,7 @@
 ﻿@model projectportfolio.ViewModels.ProjectViewModel;
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Projekt";
 }
 
@@ -9,13 +10,13 @@
     <div class="row g-3">
         @foreach (var item in Model.Projects) {
             <a asp-action="Project" asp-route-id="@item.ProjectId" class="col-12 col-sm-6">
-                    <div class="card shadow-sm">
-                        <img src="/uploads/@item.DetailImg.Name" class="card-img-top logobg" alt="@item.DetailImg.AltText">
-                        <div class="card-body">
-                            <h2 class="card-title">@item.Title</h2>
-                            <p class="card-subtitle">@item.Category.Name</p>
-                        </div>
+                <div class="card shadow-sm">
+                    <img src="/uploads/@item.DetailImg.Name" class="card-img-top logobg" alt="@item.DetailImg.AltText">
+                    <div class="card-body">
+                        <h2 class="card-title">@item.Title</h2>
+                        <p class="card-subtitle">@item.Category.Name</p>
                     </div>
+                </div>
              </a>
         }
     </div>

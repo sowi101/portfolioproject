@@ -1,76 +1,97 @@
 ﻿@model projectportfolio.Models.Project
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = Model.Title;
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 
-<p class="text-center">@Model.Published -
-
-    @if(Model.Link == "Länk saknas")
-    {
-        @Model.Link
-    } else
-    {
-        <a href=@Model.Link target="_blank">@Model.Link</a>
-    }
-</p>
-
 <section>
+    <!-- Information about year of publication and link -->
+    <p class="text-center fw-bold">@Model.Published</p>
+    <p class="text-center">
+        <!-- If statement to check if link is missing or not-->
+        @if(Model.Link == "Länk saknas")
+        {
+            <!-- Message-->
+            @Model.Link
+        } else
+        {
+            <!-- Link -->
+            <a href=@Model.Link target="_blank" class="fw-bold">LÄNK TILL WEBBPLATS/REPO</a>
+        }
+    </p>
+</section>
+<section>
+    <!-- Mockup image of project -->
     <img src="~/uploads/@Model.MockupImg.Name" alt="@Model.MockupImg.AltText" class="img-fluid" />
 </section>
 
 <div class="row my-5">
     <section class="col-12 col-md-6 align-items-center text">
+        <!-- Initial description of project-->
         <h2>Beskrivning</h2>
         <p>@Model.InitialDescription</p>
-
     </section>
     <section class="col-12 col-md-6 align-items-center text-center image">
+        <!-- Logotype for project-->
         <img src="~/uploads/@Model.LogoImg.Name" alt="@Model.LogoImg.AltText" class="img-fluid img-thumbnail" />
     </section>
 </div>
 
 <div class="row my-5">
     <section class="col-12 col-md-6 align-items-center image">
+        <!-- Detail image for project -->
         <img src="~/uploads/@Model.DetailImg.Name" alt="@Model.DetailImg.AltText" class="img-fluid img-thumbnail" />
     </section>
     <section class="col-12 col-md-6 text">
+        <!-- Technical description for project -->
         <h2>Teknisk beskrivning</h2>
         <p>@Model.TechnicalDescription</p>
     </section>
 
 </div>
 
-@if(Model.OptionalDescription != null)
+<!-- If statements to check that there is data for optional description and competences -->
+@if(Model.OptionalDescription != null && Model.Competences.Count != 0)
 {
     <div class="row my-5">
-    <section class="col-12 col-md-6 align-items-center image">
-        <h2>Ytterligare beskrivning</h2>
-        <p>@Model.OptionalDescription</p>
-    </section>
-    <section class="col-12 col-md-6 align-items-center image">
-        <h2>Teknik och verktyg</h2>
-        <ul>
+        <section class="col-12 col-md-6 align-items-center">
+            <!-- Optional description -->
+            <h2>Övrig beskrivning</h2>
+            <p>@Model.OptionalDescription</p>
+        </section>
+        <section class="col-12 col-md-6 align-items-center">
+            <h2>Teknik och verktyg</h2>
+            <!-- Foreach loop to print all competences used in project -->
             @foreach (var compItem in Model.Competences)
             {
-                <li>
-                    @compItem.Name
-                </li>
-            }
-        </ul>
-    </section>
-    </div>
-} else
-{
-    <section class="col-12 align-items-center">
-        <h2>Teknik och verktyg</h2>
-            @foreach (var compItem in Model.Competences)
-            {
-            <span class="badge btn-color">
-                    @compItem.Name
+                <span class="badge badge-color">
+                @compItem.Name
                 </span>
             }
+        </section>
+    </div>
+}
+else if (Model.OptionalDescription == null && Model.Competences.Count != 0)
+{
+    <section class="col-12 align-items-center">
+        <h2>Tekniker och verktyg</h2>
+        <!-- Foreach loop to print all competences used in project -->
+        @foreach (var compItem in Model.Competences)
+        {
+            <span class="badge badge-color">
+                @compItem.Name
+            </span>
+        }
+    </section>
+}
+else if (Model.OptionalDescription != null && Model.Competences.Count == 0)
+{
+    <section class="col-12 align-items-center">
+        <!-- Optional description -->
+        <h2>Övrig beskrivning</h2>
+        <p>@Model.OptionalDescription</p>
     </section>
 }

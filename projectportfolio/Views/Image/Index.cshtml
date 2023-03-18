@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<projectportfolio.Models.Image>
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Bilder";
 }
 
 <h1>@ViewData["Title"]</h1>
 
+<!-- Link to page to upload and add new image -->
 <p>
-    <a asp-action="Create">Lägg till ny bild</a>
+    <a class="fw-bold" asp-action="Create">LÄGG TILL NY BILD</a>
 </p>
+
+<!-- Table for images -->
 <table class="table">
     <thead>
         <tr>
@@ -22,20 +26,22 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ImageId">Ändra</a> |
-                <a asp-action="Details" asp-route-id="@item.ImageId">Detaljer</a> |
-                <a asp-action="Delete" asp-route-id="@item.ImageId">Radera</a>
-            </td>
-        </tr>
-}
+        <!-- Foreach loop to print some information for all images -->
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                     <!-- Links to edit, view details and delete information about image -->
+                    <a asp-action="Edit" asp-route-id="@item.ImageId">Ändra</a> |
+                    <a asp-action="Details" asp-route-id="@item.ImageId">Detaljer</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ImageId">Radera</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

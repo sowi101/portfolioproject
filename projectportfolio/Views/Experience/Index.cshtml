@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<projectportfolio.Models.Experience>
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Utbildning och jobb";
 }
 
 <h1>@ViewData["Title"]</h1>
 
+<!-- Link to page to add new experience -->
 <p>
-    <a asp-action="Create">Lägg till ny utbildning / nytt jobb</a>
+    <a class="fw-bold" asp-action="Create">LÄGG TILL NY UTBILDNING / NYTT JOBB</a>
 </p>
+
+<!-- Table for experiences -->
 <table class="table">
     <thead>
         <tr>
@@ -22,20 +26,22 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.What)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Where)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ExperienceId">Ändra</a> |
-                <a asp-action="Details" asp-route-id="@item.ExperienceId">Detaljer</a> |
-                <a asp-action="Delete" asp-route-id="@item.ExperienceId">Radera</a>
-            </td>
-        </tr>
-}
+        <!-- Foreach loop to print some information about all experiences -->
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.What)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Where)
+                </td>
+                <td>
+                    <!-- Links to edit, view details and delete experience -->
+                    <a asp-action="Edit" asp-route-id="@item.ExperienceId">Ändra</a> |
+                    <a asp-action="Details" asp-route-id="@item.ExperienceId">Detaljer</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ExperienceId">Radera</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

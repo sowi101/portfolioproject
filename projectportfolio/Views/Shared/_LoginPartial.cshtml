@@ -5,6 +5,7 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    <!-- Link to admin menu and button to log out -->
     <li class="me-3 my-1"><a class=" btn btn-sm btn-color" asp-controller="Home" asp-action="Admin">Huvudmeny</a></li>
     <li class="my-1">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

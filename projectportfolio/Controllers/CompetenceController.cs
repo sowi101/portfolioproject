@@ -33,6 +33,7 @@ namespace projectportfolio.Controllers
         [Route("/kompetenser/lagg-till")]
         public IActionResult Create()
         {
+            // Save categories with a certain area of use to select list
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Kompetenser"), "CategoryId", "Name");
             return View();
         }
@@ -69,6 +70,8 @@ namespace projectportfolio.Controllers
             {
                 return NotFound();
             }
+
+            // Save categories with a certain area of use to select list
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Kompetenser"), "CategoryId", "Name", competence.CategoryId);
             return View(competence);
         }

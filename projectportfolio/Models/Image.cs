@@ -16,7 +16,7 @@ namespace projectportfolio.Models
         [Display(Name = "Beskrivning")]
         public string? AltText { get; set;}
 
-        // Relation Category
+            // Relation to Category model
         [Required(ErrorMessage = "Du måste välja en kategori.")]
         [Display(Name = "Kategori")]
         public int CategoryId { get; set; }

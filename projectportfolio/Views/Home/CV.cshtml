@@ -1,4 +1,5 @@
 ﻿@{
+    // Save title to ViewData
     ViewData["Title"] = "CV";
 }
 
@@ -6,36 +7,46 @@
 
 <div class="row my-5">
     <section class="col-12 col-md-6 row align-items-center text">
+        <!-- Information about educations -->
         <h2>UTBILDNING</h2>
+        <!-- Foreach loop to print all data about educations -->
         @foreach (var item in ViewBag.Experiences)
         {
             if(item.Category.Name == "Utbildning"){
-            <h3>@item.What</h3>
-            <p>@item.Where</p>
-            <p>@item.Start - @item.End</p>            
-            <p>@item.Description</p>
+                <article>
+                    <h3>@item.What</h3>
+                    <p>@item.Where</p>
+                    <p>@item.Start - @item.End</p>            
+                    <p>@item.Description</p>
+                </article>
             }
         }
     </section>
     <section class="col-12 col-md-6 align-items-center image">
-        <img src="~/images/undraw_studying_re_deca.svg" class="img-fluid" />
+        <!-- Illustration -->
+        <img src="~/images/undraw_studying_re_deca.svg" class="img-fluid" alt="Illustration av person som sitter med en mugg och dator" />
     </section>
 </div>
 
 <div class="row my-5">
     <section class="col-12 col-md-6 row align-items-center image">
-        <img src="~/images/undraw_teacher_re_sico.svg" class="img-fluid"/>
+        <!-- Illustration -->
+        <img src="~/images/undraw_teacher_re_sico.svg" class="img-fluid" alt="Illustratio av person som sitter och håller upp ett dokument med betyg"/>
     </section>
     <section class="col-12 col-md-6 text">
+        <!-- Information about jobs -->
         <h2>JOBBERFARENHET</h2>
+        <!-- Foreach loop to print all data about jobs -->
         @foreach (var item in ViewBag.Experiences)
         {
             if (item.Category.Name == "Jobb")
             {
-                <h3>@item.What</h3>
-                <p>@item.Where</p>
-                <p>@item.Start - @item.End</p>
-                <p>@item.Description</p>
+                <article>
+                    <h3>@item.What</h3>
+                    <p>@item.Where</p>
+                    <p>@item.Start - @item.End</p>
+                    <p>@item.Description</p>
+                </article>
             }
         }
     </section>
@@ -43,43 +54,42 @@
 </div>
 
 <div class="row my-5">
+    <!-- Information about competences-->
     <h2>KOMPETENSER</h2>
     <section class="col-12 col-md-4">
         <h3>Språk</h3>
-
+        <!-- Foreach loop and if statement to print competences in a certain category -->
         @foreach (var item in ViewBag.Competences)
         {
             if(item.Category.Name == "Programmeringsspråk")
             {
-                <span class="badge btn-color">
+                <span class="badge badge-color">
                     @item.Name
                 </span>
             }
         }
-  
     </section>
-        <section class="col-12 col-md-4">
+    <section class="col-12 col-md-4">
         <h3>Ramverk</h3>
-        
+        <!-- Foreach loop and if statement to print competences in a certain category -->
         @foreach (var item in ViewBag.Competences)
         {
             if (item.Category.Name == "Ramverk")
             {
-                <span class="badge btn-color">
+                <span class="badge badge-color">
                     @item.Name
                 </span>
             }
-        }
-        
+        } 
     </section>
     <section class="col-12 col-md-4">
         <h3>Verktyg</h3>
-        
+        <!-- Foreach loop and if statement to print competences in a certain category -->
         @foreach (var item in ViewBag.Competences)
         {
             if (item.Category.Name == "Verktyg")
             {
-                <span class="badge btn-color">
+                <span class="badge badge-color">
                     @item.Name
                 </span>
             }

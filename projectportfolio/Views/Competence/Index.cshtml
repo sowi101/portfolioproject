@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<projectportfolio.Models.Competence>
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Kompetenser";
 }
 
 <h1>@ViewData["Title"]</h1>
 
+<!-- Link to page to add new competence -->
 <p>
-    <a asp-action="Create">Lägg till ny kompetens</a>
+    <a class="fw-bold" asp-action="Create">LÄGG TILL NY KOMPETENS</a>
 </p>
+
+<!-- Table for competences -->
 <table class="table">
     <thead>
         <tr>
@@ -22,19 +26,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CompetenceId">Ändra</a> |
-                <a asp-action="Delete" asp-route-id="@item.CompetenceId">Radera</a>
-            </td>
-        </tr>
-}
+        <!-- Foreach loop to print all competences -->
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    <!-- Links to edit and delete competence -->
+                    <a asp-action="Edit" asp-route-id="@item.CompetenceId">Ändra</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CompetenceId">Radera</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

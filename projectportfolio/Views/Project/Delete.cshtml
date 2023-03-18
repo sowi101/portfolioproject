@@ -1,6 +1,7 @@
 ﻿@model projectportfolio.Models.Project
 
 @{
+    // Save title to ViewData
     ViewData["Title"] = "Radera projekt";
 }
 
@@ -9,6 +10,7 @@
 <p>Är du säker på att du vill radera detta projekt?</p>
 <div>
     <hr />
+    <!-- Description list with some information about project -->
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
@@ -29,11 +31,13 @@
             @Html.DisplayFor(model => model.Link)
         </dd>
     </dl>
+
+    <!-- Buttons with link and to submit for delete -->
     <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
         <form asp-action="Delete">
             <input type="hidden" asp-for="ProjectId" />
             <a class="btn btn-color-secondary fw-bold" asp-action="Index">TILLBAKA TILL LISTA</a>
-            <input  type="submit" value="RADERA" class="btn btn-danger" />
+            <input type="submit" value="RADERA" class="btn btn-danger fw-bold" />
         </form>
     </div>
 </div>
