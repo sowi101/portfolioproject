@@ -29,7 +29,7 @@ namespace projectportfolio.Controllers
             return View();
         }
 
-        [Route("/om")]
+        [Route("/om-sofia")]
         public IActionResult About()
         {
             return View();

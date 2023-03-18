@@ -23,7 +23,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project
-        [Route("/projekt")]
+        [Route("/admin/projekt")]
         public async Task<IActionResult> Index()
         {
             // Get all projects and related information from database and save to a variable as a viewmodel
@@ -40,7 +40,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project/Details/5
-        [Route("/projekt/detaljer/{id?}")]
+        [Route("/admin/projekt/detaljer/{id?}")]
         public async Task<IActionResult> Details(int? id)
         {
             // If statement that return response status Not Found if no id has been given or no project is stored in database
@@ -69,7 +69,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project/Create
-        [Route("/projekt/lagg-till")]
+        [Route("/admin/projekt/lagg-till")]
         public IActionResult Create()
         {
             // Make a new instance of project
@@ -100,7 +100,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/projekt/lagg-till")]
+        [Route("/admin/projekt/lagg-till")]
         public async Task<IActionResult> Create([Bind("ProjectId,Title,Published,Link,InitialDescription,TechnicalDescription,OptionalDescription,MockupId,LogotypeId,DetailId,CategoryId")] Project project, string[] selectedCompetences)
         {
             // If statement that checks there are any data in array for selected competences
@@ -151,7 +151,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project/Edit/5
-        [Route("/projekt/andra/{id?}")]
+        [Route("/admin/projekt/andra/{id?}")]
         public async Task<IActionResult> Edit(int? id)
         {
 
@@ -187,7 +187,7 @@ namespace projectportfolio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/projekt/andra/{id?}")]
+        [Route("/admin/projekt/andra/{id?}")]
         public async Task<IActionResult> Edit(int id, [Bind("ProjectId,Title,Published,Link,InitialDescription,TechnicalDescription,OptionalDescription,MockupId,LogotypeId,DetailId,CategoryId")] Project project, string[] selectedCompetences)
         {
             if (id != project.ProjectId)
@@ -285,7 +285,7 @@ namespace projectportfolio.Controllers
         }
 
         // GET: Project/Delete/5
-        [Route("/projekt/radera/{id?}")]
+        [Route("/admin/projekt/radera/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -311,7 +311,7 @@ namespace projectportfolio.Controllers
         // POST: Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Route("/projekt/radera/{id?}")]
+        [Route("/admin/projekt/radera/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Projects == null)
@@ -356,6 +356,7 @@ namespace projectportfolio.Controllers
                     IsChecked = projectCompetences.Contains(competence.CompetenceId)
                 });
             }
+
             // Save variable to a ViewBag
             ViewBag.Competences = viewModel;
         }

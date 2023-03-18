@@ -56,7 +56,7 @@
 <div class="row my-5">
     <!-- Information about competences-->
     <h2>KOMPETENSER</h2>
-    <section class="col-12 col-md-4">
+    <section class="col-12 col-md-4 mb-3">
         <h3>Språk</h3>
         <!-- Foreach loop and if statement to print competences in a certain category -->
         @foreach (var item in ViewBag.Competences)
@@ -69,7 +69,7 @@
             }
         }
     </section>
-    <section class="col-12 col-md-4">
+    <section class="col-12 col-md-4 mb-3">
         <h3>Ramverk</h3>
         <!-- Foreach loop and if statement to print competences in a certain category -->
         @foreach (var item in ViewBag.Competences)
@@ -82,12 +82,12 @@
             }
         } 
     </section>
-    <section class="col-12 col-md-4">
-        <h3>Verktyg</h3>
+    <section class="col-12 col-md-4 mb-3">
+        <h3>Program</h3>
         <!-- Foreach loop and if statement to print competences in a certain category -->
         @foreach (var item in ViewBag.Competences)
         {
-            if (item.Category.Name == "Verktyg")
+            if (item.Category.Name == "Program")
             {
                 <span class="badge badge-color">
                     @item.Name
