@@ -20,7 +20,7 @@ namespace projectportfolio.Controllers
         {
             _logger = logger;
 
-            // Save database connection to variable.
+            // Save database connection to property.
             _context = context;
         }
         

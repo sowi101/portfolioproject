@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Identity\Pages\Account\Manage\**" />
+    <Content Remove="Areas\Identity\Pages\Account\Manage\**" />
+    <EmbeddedResource Remove="Areas\Identity\Pages\Account\Manage\**" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Home\Component.razor" />
     <Content Remove="Views\Home\Index1.cshtml" />
     <Content Remove="Views\Home\Index2.cshtml" />

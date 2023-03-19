@@ -6,8 +6,9 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+<hr />
 <div class="row">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-6">
         <!-- Description list with information about image -->
         <dl class="row">
             <dt class = "col-sm-5">
@@ -33,8 +34,8 @@
     </div>
 
     <!-- Image -->
-    <div class="col-12 col-md-8">
-        <img class="img-fluid" src="~/uploads/@Html.DisplayFor(model => model.Name)" alt="@Model.AltText" />
+    <div class="col-12 col-md-6">
+        <img class="img-fluid img-thumbnail" src="~/uploads/@Html.DisplayFor(model => model.Name)" alt="@Model.AltText" />
     </div>
 </div>
 

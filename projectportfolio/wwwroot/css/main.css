@@ -27,7 +27,7 @@ main {
 
 /* Text elements */
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, .subtitle {
     color: #83F3DF;
     text-transform: uppercase;
     font-weight: 700;
@@ -79,11 +79,11 @@ a:hover, footer i:hover {
     min-width: 50px;
 }
 
-.nav-link {
+.navbar-dark .navbar-nav .nav-link {
     color: #83F3DF;
 }
 
-.nav-link:hover {
+.navbar-dark .navbar-nav .nav-link:hover {
     color: #DCEEEB;
 }
 
@@ -130,6 +130,7 @@ i {
     }
 
     .image {
+        margin-top: 1em;
         order: 2;
     }
 
@@ -144,6 +145,10 @@ i {
     h3 {
         font-size: 1.125em;
     }
+
+    .subtitle {
+        text-align: center;
+    }
 }
     /* Desktop */
 @media (min-width: 768px) {
@@ -155,7 +160,7 @@ i {
         font-size: 1.75em;
     }
 
-    h2 {
+    h2, .subtitle {
         font-size: 1.5em;
     }
 
@@ -163,7 +168,7 @@ i {
         font-size: 1.25em;
     }
 
-    .homepage-heading {
+    .homepage-heading, .subtitle {
         text-align: left;
     }
 }

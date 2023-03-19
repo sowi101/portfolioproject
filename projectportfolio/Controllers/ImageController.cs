@@ -24,9 +24,9 @@ namespace projectportfolio.Controllers
         public ImageController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
-            // Save data about host environment to variable.
+            // Save data about host environment to property.
             _hostEnvironment = hostEnvironment;
-            // Save information about root path to variable.
+            // Save information about root path to property.
             rootpath = _hostEnvironment.WebRootPath;
         }
 
@@ -108,7 +108,7 @@ namespace projectportfolio.Controllers
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "AreaOfUse", image.CategoryId);
             
-            // Return informatio about image to view
+            // Return information about image to view
             return View(image);
         }
 
@@ -126,6 +126,8 @@ namespace projectportfolio.Controllers
             {
                 return NotFound();
             }
+
+            // Save categories with a certain area of use to select list
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(category => category.AreaOfUse == "Bilder"), "CategoryId", "Name", image.CategoryId);
             return View(image);
         }
